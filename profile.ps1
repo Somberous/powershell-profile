@@ -50,6 +50,9 @@ function Get-OhMyPoshInstallCommand {
 
 #region Font Functions
 
+<#
+    TODO: Implement a checker to see which VScode version is installed and set the font accordingly (VScode insider, stable, etc.)
+#>
 function Set-VSCodeFont {
     [CmdletBinding()]
     param (
@@ -61,6 +64,11 @@ function Set-VSCodeFont {
 
 }
 
+<#
+    TODO: Implement a way for users to easily add their terminal and way to get the font from that terminal application,
+    as accounting for all terminal applications is not feasible.
+    TODO: Implement a way to set a font for the terminal application
+#>
 function Get-CurrentTerminalFont {
 
     #check for the current OS
