@@ -5,8 +5,8 @@ Clear-Host
 
 # Theme variables
 
-$ohMyPoshTheme = "lambdageneration"
-$previousTheme = "montys"
+$ohMyPoshTheme = "kushal"
+$previousTheme = "kushal"
 $themePattern = 'ohMyPoshTheme\s*=\s*"([^"]*)"'
 $previousPattern = 'previousTheme\s*=\s*"([^"]*)"'
 
@@ -16,7 +16,6 @@ $previousPattern = 'previousTheme\s*=\s*"([^"]*)"'
 
 $requiredModules = @('PSReadLine')
 
-#endregion
 #endregion
 
 #region Functions
@@ -353,6 +352,18 @@ catch {
 
 #endregion
 
+#region Auto Complete Setup
+
+# PowerShell parameter completion shim for the dotnet CLI
+Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
+    param($wordToComplete, $commandAst, $cursorPosition)
+    dotnet complete --position $cursorPosition "$commandAst" | ForEach-Object {
+        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+    }
+}
+
+#endreigion
+
 #region Oh-My-Posh Initialization
 
 try {
@@ -371,7 +382,3 @@ catch {
 }
 
 #endregion
-
-
-
-
