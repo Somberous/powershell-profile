@@ -24,7 +24,7 @@ function Get-OhMyPoshInstallCommand {
     switch ($true) {
         $IsWindows {
             if (Get-Command winget -ErrorAction SilentlyContinue) {
-                return "winget install oh-my-posh"
+                return "winget install --id JanDeDobbeleer.OhMyPosh -e --source winget"
             }
             else {
                 throw "Winget is required for Windows installation"
@@ -32,14 +32,14 @@ function Get-OhMyPoshInstallCommand {
         }
         $IsMacOS {
             if (Get-Command brew -ErrorAction SilentlyContinue) {
-                return "brew install oh-my-posh"
+                return "brew install jandedobbeleer/oh-my-posh/oh-my-posh"
             }
             else {
                 throw "Homebrew is required for Mac installation"
             }
         }
         $IsLinux {
-            return "Install-Module -Name oh-my-posh -Scope CurrentUser -Force -AllowClobber"
+            return "curl -s https://ohmyposh.dev/install.sh | bash -s"
         }
         default {
             return $null
@@ -382,3 +382,10 @@ catch {
 }
 
 #endregion
+
+#region Aliases
+
+# I use the Insiders version of VS Code, so I want the `code` command to point to that.
+Set-Alias -Name code -Value code-insiders.cmd
+
+#endregion Aliases
