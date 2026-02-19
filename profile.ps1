@@ -230,7 +230,7 @@ function Invoke-ProfileReload {
         [Parameter()]
         [ValidateScript({ Test-Path $_ -IsValid })]
         [string]
-        $ProfilePath = $PROFILE.AllUsersAllHosts
+        $ProfilePath = $PROFILE.CurrentUserAllHosts
     )
 
     try {
